@@ -1,16 +1,20 @@
-import { LightningElement } from 'lwc';
-import { createRecord } from 'lightning/uiRecordApi';
-import conMainObject from '@salesforce/schema/Contact';
-import conFirstName from '@salesforce/schema/Contact.FirstName';
-import conLastName from '@salesforce/schema/Contact.LastName';
-import conPhone from '@salesforce/schema/Contact.Phone';
-import conEmail from '@salesforce/schema/Contact.Email';
-import conDepartment from '@salesforce/schema/Contact.Department';
-import conDescription from '@salesforce/schema/Contact.Description';
-
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { NavigationMixin } from 'lightning/navigation';
+import { api, LightningElement } from 'lwc';
+import ACCOUNT_NAME from '@salesforce/schema/Account.Name';
+import ACCOUNT_TYPE from '@salesforce/schema/Account.Type';
+import ACCOUNT_OWNER from '@salesforce/schema/Account.OwnerId';
 
 export default class WEB extends LightningElement {
-    
-}
+    @api recordId;
+    greeting = 'World';
+    changeHandler(event) {
+      this.greeting = event.target.value;
+    }
+      selectedFields = [ACCOUNT_NAME, ACCOUNT_TYPE, ACCOUNT_OWNER];
+      handleSubmit(event){
+        //you can change values from here
+        //const fields = event.detail.fields;
+        //fields.Name = 'My Custom  Name'; // modify a field
+        console.log('Account detail : ',event.detail.fields);
+        console.log('Account name : ',event.detail.fields.Name);
+           }
+    }

@@ -1,5 +1,20 @@
 <template>
    <lightning-card title="Web Development">
-       
+    <div class="slds-m-around_medium">
+        <p>Hello, {greeting}!</p>
+        <lightning-input label="Name" value={greeting} onchange={changeHandler}></lightning-input>
+      </div>
+      <lightning-layout>
+        <lightning-layout-item>
+            <lightning-record-form
+                record-id={recordId}
+                object-api-name="Account"
+                fields={selectedFields}
+                columns="2"
+                mode="edit" 
+                onsubmit={handleSubmit}>
+            </lightning-record-form>
+        </lightning-layout-item>
+    </lightning-layout>
    </lightning-card> 
 </template>
